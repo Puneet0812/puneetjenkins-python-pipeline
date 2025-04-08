@@ -1,9 +1,14 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.11'     // Official Python image
+            args '-u root'          // Run as root to avoid permission issues
+        }
+    }
     stages {
         stage('Install dependencies') {
             steps {
-                sh 'python3 -m pip install -r requirements.txt'
+                sh 'pip install -r requirements.txt'
             }
         }
         stage('Run tests') {
@@ -13,6 +18,7 @@ pipeline {
         }
         stage('Package with PyInstaller') {
             steps {
+                sh 'pip install pyinstaller'
                 sh 'pyinstaller --onefile sources/add2vals.py'
             }
         }
