@@ -1,42 +1,18 @@
-# Jenkins Python Pipeline
+# simple-python-pyinstaller-app
 
-This repository contains a simple Python calculator application and a Jenkins pipeline to demonstrate automated testing and packaging using CI/CD.
+This repository is for the
+[Build a Python app with PyInstaller](https://jenkins.io/doc/tutorials/build-a-python-app-with-pyinstaller/)
+tutorial in the [Jenkins User Documentation](https://jenkins.io/doc/).
 
-## Project Overview
+The repository contains a simple Python application which is a command line tool "add2vals" that outputs the addition of two values. If at least one of the
+values is a string, "add2vals" treats both values as a string and instead
+concatenates the values. The "add2" function in the "calc" library (which
+"add2vals" imports) is accompanied by a set of unit tests. These are tested with pytest to check that this function works as expected and the results are saved
+to a JUnit XML report.
 
-This project includes:
+The delivery of the "add2vals" tool through PyInstaller converts this tool into
+a standalone executable file for Linux, which you can download through Jenkins
+and execute at the command line on Linux machines without Python.
 
-- A basic calculator application written in Python
-- Unit tests using Pytest
-- A Jenkinsfile defining CI/CD stages
-- PyInstaller for packaging the Python script into an executable
-
-## Project Structure
-
-
-## Jenkins Pipeline Stages
-
-The `Jenkinsfile` defines the following stages:
-
-1. **Install dependencies**  
-   Installs the Python packages listed in `requirements.txt`
-
-2. **Run tests**  
-   Executes unit tests using Pytest
-
-3. **Package with PyInstaller**  
-   Converts the calculator script into a standalone executable
-
-4. **Archive build**  
-   Archives the generated executable as a build artifact
-
-## How to Run Tests Locally
-
-1. Install dependencies:
-pip install -r requirements.txt
-2. Run tests:
-pytest test_calculator.py
-
-## Notes
-
-This repository is part of a DevOps CI/CD assignment demonstrating Jenkins automation with GitHub.
+The `jenkins` directory contains an example of the `Jenkinsfile` (i.e. Pipeline)
+you'll be creating yourself during the tutorial.
